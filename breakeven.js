@@ -6,7 +6,7 @@ function fmt(n, decimals = 2) {
 }
 
 function fmtCurrency(n) {
-  return '$' + fmt(n);
+  return 'Rs' + fmt(n);
 }
 
 function calculate() {
@@ -103,7 +103,7 @@ function drawChart(fixedCosts, variableCost, sellingPrice, bepUnits, targetProfi
     ctx.fillStyle = textColor;
     ctx.font = '10px DM Mono, monospace';
     ctx.textAlign = 'right';
-    const label = val >= 1000 ? '$' + (val / 1000).toFixed(0) + 'k' : '$' + val.toFixed(0);
+    const label = val >= 1000 ? 'Rs' + (val / 1000).toFixed(0) + 'k' : 'Rs' + val.toFixed(0);
     ctx.fillText(label, pad.left - 8, y + 4);
   }
 
