@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breakeven Calculator</title>
+  <link rel="stylesheet" href="breakeven.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+
+  <div class="container">
+
+    <header>
+      <div class="header-tag">Financial Analysis</div>
+      <h1>Breakeven<br><em>Calculator</em></h1>
+      <p class="subtitle">Find the exact point where revenue meets total costs</p>
+    </header>
+
+    <div class="main-layout">
+
+      <!-- Input Panel -->
+      <section class="panel input-panel">
+        <div class="panel-label">Inputs</div>
+
+        <div class="input-group">
+          <label for="fixed-costs">
+            Fixed Costs
+            <span class="hint">Rent, salaries, insurance…</span>
+          </label>
+          <div class="input-wrap">
+            <span class="currency">$</span>
+            <input type="number" id="fixed-costs" placeholder="0.00" min="0" step="0.01">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="variable-cost">
+            Variable Cost per Unit
+            <span class="hint">Materials, labour per unit…</span>
+          </label>
+          <div class="input-wrap">
+            <span class="currency">$</span>
+            <input type="number" id="variable-cost" placeholder="0.00" min="0" step="0.01">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="selling-price">
+            Selling Price per Unit
+            <span class="hint">Revenue generated per unit…</span>
+          </label>
+          <div class="input-wrap">
+            <span class="currency">$</span>
+            <input type="number" id="selling-price" placeholder="0.00" min="0" step="0.01">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="target-profit">
+            Target Profit <span class="optional">(optional)</span>
+            <span class="hint">Desired profit amount…</span>
+          </label>
+          <div class="input-wrap">
+            <span class="currency">$</span>
+            <input type="number" id="target-profit" placeholder="0.00" min="0" step="0.01">
+          </div>
+        </div>
+
+        <button id="calc-btn" onclick="calculate()">
+          <span>Calculate</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div id="error-msg" class="error-msg"></div>
+      </section>
+
+      <!-- Results Panel -->
+      <section class="panel results-panel" id="results-panel">
+        <div class="panel-label">Results</div>
+
+        <div class="result-hero">
+          <div class="hero-label">Breakeven Units</div>
+          <div class="hero-value" id="bep-units">—</div>
+          <div class="hero-sub" id="bep-revenue">units to break even</div>
+        </div>
+
+        <div class="result-grid">
+          <div class="result-card">
+            <div class="rc-label">Breakeven Revenue</div>
+            <div class="rc-value" id="bep-rev-val">—</div>
+          </div>
+          <div class="result-card">
+            <div class="rc-label">Contribution Margin</div>
+            <div class="rc-value" id="contrib-margin">—</div>
+          </div>
+          <div class="result-card">
+            <div class="rc-label">Margin Ratio</div>
+            <div class="rc-value" id="margin-ratio">—</div>
+          </div>
+          <div class="result-card" id="target-card" style="display:none">
+            <div class="rc-label">Units for Target Profit</div>
+            <div class="rc-value" id="target-units">—</div>
+          </div>
+        </div>
+
+        <div class="chart-section">
+          <div class="chart-header">
+            <span>Cost vs Revenue</span>
+            <div class="chart-legend">
+              <span class="leg-item"><span class="leg-dot revenue"></span>Revenue</span>
+              <span class="leg-item"><span class="leg-dot total-cost"></span>Total Cost</span>
+              <span class="leg-item"><span class="leg-dot fixed"></span>Fixed Cost</span>
+            </div>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="chart" width="600" height="280"></canvas>
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+  </div>
+
+  <script src="breakeven.js"></script>
+</body>
+</html>
